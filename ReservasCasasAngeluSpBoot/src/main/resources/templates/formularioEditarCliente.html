@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de edición de cliente</title>
+    <!-- Agrega la referencia al archivo de estilos CSS -->
+    <link rel="stylesheet" th:href="@{/estilos/formulario.css}"/>
+</head>
+<body>
+
+<h2>Formulario de edición de cliente</h2>
+
+<!-- Formulario para editar cliente -->
+<form th:action="@{/editarCliente}" method="post" th:object="${elCliente}">
+
+    <!-- Campo oculto para el ID del cliente -->
+    <div class="input-group" th:style="${'display: none;'}">
+        <label for="id" class="label">ID Cliente:</label>
+        <input type="text" th:field="*{idCli}" id="id"/> <br/>
+    </div>
+
+    <!-- Campo para el nombre del cliente -->
+    <div class="input-group">
+        <label for="nombre" class="label">Nombre:</label>
+        <input type="text" th:field="*{nombre}" id="nombre"/>
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></span>
+    </div>
+
+    <!-- Campo para el email del cliente -->
+    <div class="input-group">
+        <label for="email" class="label">Email:</label>
+        <input type="email" th:field="*{email}" id="email"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+    </div>
+
+    <!-- Campo para el teléfono del cliente -->
+    <div class="input-group">
+        <label for="telefono" class="label">Teléfono:</label>
+        <input type="text" th:field="*{telefono}" id="telefono"/>
+        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error"></span>
+    </div>
+
+    <!-- Botón de enviar -->
+    <div class="input-group">
+        <input type="submit" value="Enviar"/>
+    </div>
+
+</form>
+
+</body>
+</html>

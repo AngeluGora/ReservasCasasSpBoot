@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de edición de reserva</title>
+    <!-- Agrega la referencia al archivo de estilos CSS -->
+    <link rel="stylesheet" th:href="@{/estilos/formulario.css}"/>
+</head>
+<body>
+
+
+<h2>Formulario de editar reserva</h2>
+
+<form id="formulario" th:action="@{/editarReserva}" method="post" th:object="${laReserva}">
+
+    <div class="input-group">
+        <label for="id" class="label">ID de la reserva:</label>
+        <input type="text" th:field="*{idR}" id="id" readonly="readonly"/>
+    </div>
+    <!-- Campo para la selección del cliente -->
+    <div class="input-group">
+        <label for="cliente" class="label">Cliente:</label>
+        <select th:field="*{cliente.idCli}" id="cliente">
+            <option th:each="cliente : ${listaClientes}" th:value="${cliente.idCli}" th:text="${cliente.nombre}" th:selected="${cliente.idCli eq laReserva.cliente.idCli}"></option>
+        </select>
+    </div>
+
+    <!-- Campo para la selección de la casa -->
+    <div class="input-group">
+        <label for="casa" class="label">Casa:</label>
+        <select th:field="*{casa.idC}" id="casa">
+            <option th:each="casa : ${listaCasas}" th:value="${casa.idC}" th:text="${casa.direccion}" th:selected="${casa.idC eq laReserva.casa.idC}"></option>
+        </select>
+    </div>
+
+    <!-- Campo para la fecha de inicio -->
+    <div class="input-group">
+        <label for="fechaInicio" class="label">Fecha de inicio:</label>
+        <input type="date" th:field="*{fechaInicio}" id="fechaInicio" pattern="\d{4}-\d{2}-\d{2}" />
+    </div>
+
+    <!-- Campo para la fecha de fin -->
+    <div class="input-group">
+        <label for="fechaFin" class="label">Fecha de fin:</label>
+        <input type="date" th:field="*{fechaFin}" id="fechaFin" pattern="\d{4}-\d{2}-\d{2}" />
+    </div>
+
+    <!-- Botón de enviar con llamada a la función submitForm() -->
+    <div class="input-group">
+        <input type="submit" value="Enviar"/>
+    </div>
+</form>
+</body>
+</html>

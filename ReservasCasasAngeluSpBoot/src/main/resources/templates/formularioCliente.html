@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario agregar nuevo cliente</title>
+    <!-- Agrega la referencia al archivo de estilos CSS -->
+    <link rel="stylesheet" th:href="@{/estilos/formulario.css}"/>
+</head>
+<body>
+
+<h2>Formulario de registro de nuevo cliente</h2>
+<form th:action="@{/agregarCliente}" method="post" th:object="${elCliente}">
+
+    <div class="input-group">
+        <label for="nombre" class="label">Nombre:</label>
+        <!-- Utiliza un campo de entrada para el nombre -->
+        <input type="text" th:field="*{nombre}" id="nombre"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="email" class="label">Email:</label>
+        <!-- Utiliza un campo de entrada para el correo electrónico -->
+        <input type="email" th:field="*{email}" id="email"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="telefono" class="label">Teléfono:</label>
+        <!-- Utiliza un campo de entrada para el teléfono -->
+        <input type="text" th:field="*{telefono}" id="telefono"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <input type="submit" value="Enviar"/>
+    </div>
+
+</form>
+
+</body>
+</html>

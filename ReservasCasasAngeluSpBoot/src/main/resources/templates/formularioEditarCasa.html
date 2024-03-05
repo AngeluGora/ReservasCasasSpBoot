@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de edición de casa</title>
+    <!-- Agrega la referencia al archivo de estilos CSS -->
+    <link rel="stylesheet" th:href="@{/estilos/formulario.css}"/>
+</head>
+<body>
+
+<h2>Formulario de edición de casa</h2>
+
+<h2>Formulario de registro de nueva casa</h2>
+<form th:action="@{/editarCasa}" method="post" th:object="${laCasa}">
+    <div class="input-group">
+        <label for="id" class="label">ID de la casa:</label>
+        <input type="text" th:field="*{idC}" id="id" readonly="readonly"/>
+    </div>
+    <div class="input-group">
+        <label for="direccion" class="label">Dirección:</label>
+        <!-- Utiliza un campo de entrada para la dirección -->
+        <input type="text" th:field="*{direccion}" id="direccion"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="numeroHabitaciones" class="label">Número de Habitaciones:</label>
+        <!-- Utiliza un campo de entrada para el número de habitaciones -->
+        <input type="number" th:field="*{numeroHabitaciones}" id="numeroHabitaciones"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('numeroHabitaciones')}" th:errors="*{numeroHabitaciones}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="precioPorNoche" class="label">Precio por Noche:</label>
+        <!-- Utiliza un campo de entrada para el precio por noche -->
+        <input type="number" th:field="*{precioPorNoche}" id="precioPorNoche"/>
+        <!-- Muestra los errores de validación si los hay -->
+        <span th:if="${#fields.hasErrors('precioPorNoche')}" th:errors="*{precioPorNoche}" class="error"></span>
+    </div>
+
+    <div class="input-group">
+        <input type="submit" value="Enviar"/>
+    </div>
+
+</form>
+
+</body>
+</html>
